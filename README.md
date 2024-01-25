@@ -36,6 +36,24 @@ To run this project locally, make sure you have installed mongodb and nodejs on 
   npm install
   npm run dev
 ```
+**http commands**
+-Role:
+	1)GET:http://localhost:8000/api/v1/role/getAllRole
+	2)POSt:http://localhost:8000/api/v1/role/createRole
+-User:
+	1)POST:http://localhost:8000/api/v1/users/register
+	2)POST:https://community-app-c8b1.onrender.com/users/login
+	3)POST:http://localhost:8000/api/v1/users/logout
+	4)GET:http://localhost:8000/api/v1/users/getMe
+-Community:
+	1)POST:http://localhost:8000/api/v1/community/cCommunity
+	2)GET:http://localhost:8000/api/v1/community/gaCommunity
+	3)GET:http://localhost:8000/api/v1/community/7156173990150738171/member
+	4)GET:http://localhost:8000/api/v1/community/me/owner
+	5)GET:http://localhost:8000/api/v1/community/me/member
+-Member
+	1)POST:http://localhost:8000/api/v1/member/addMember
+	2)DELETE:http://localhost:8000/api/v1/member/id/community/cid
 
 **Note:** The provided documentation and implementation files can be found in the GitHub repository for a detailed reference.
 
