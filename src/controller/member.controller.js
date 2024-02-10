@@ -7,8 +7,14 @@ import {hasRole} from "../service/member.service.js";
 
 
 const addMember = asyncHandler(async (req, res) => {
+    /*
+        - check if the user has the role to add a member to the community
+        - create a new member
+        - return the new member 
+    */
     try {
         const { community, user, role } = req.body;
+
         const adminRole = await Role.findOne({ name: 'Community Admin' });
 
         if (!(await hasRole(community, req.user.toObject()._id, adminRole))) {
@@ -20,6 +26,7 @@ const addMember = asyncHandler(async (req, res) => {
             user,
             role: role,
         });
+        
         res.status(201).json(
             new ApiResponse(
                 200,
@@ -27,7 +34,7 @@ const addMember = asyncHandler(async (req, res) => {
                 "Member added successfully"
             )
         );
-    } catch (error) {
+    }catch (error) {
         console.log(error);
         throw new ApiError(500, "Adding member failed");
     }
@@ -35,6 +42,10 @@ const addMember = asyncHandler(async (req, res) => {
 
 
 const deleteMember=asyncHandler(async(req,res)=>{
+    /*
+        - check if the user has the role to delete a member from the commnunity
+        - delete the member
+    */
     try{
         const moderatorRole = await Role.findOne({ name: 'Community Moderator' });
         const adminRole = await Role.findOne({ name: 'Community Admin' });
@@ -49,7 +60,6 @@ const deleteMember=asyncHandler(async(req,res)=>{
         return res.status(201)
         .json(new ApiResponse(201,{},"Member removed successfully."));
     } catch (err) {
-
         throw ApiError(500,"Fail deleting member")
     }
 })
